@@ -4,45 +4,38 @@ import "swiper/css"
 import { Pagination, Navigation } from "swiper";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import ParseService from '../plugins/ParseService';
+import { useEffect } from 'react';
 export default function SliderComponent() {
+    const [data, setData] = React.useState([])
+    async function fetch() {
+        try {
+            const response = await ParseService.Cloud.run("allSlider")
+            setData(response)
+        } catch (error) {
+
+        }
+    }
+    useEffect(() => {
+        fetch()
+    }, [])
     return (
         <Swiper slidesPerView={1} modules={[Pagination]} autoplay navigation={true}>
-            <SwiperSlide>
+            {data.map((i, key) => <SwiperSlide key={key}>
                 <div className=' bg-primary-900 h-fit'>
                     <div className="container mx-auto">
-                        <div className="grid grid-cols-2 gap-2">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                             <div className="w-full flex justify-center items-center h-fit">
-                                <img src="/logo.webp" className='h-full' alt="" />
+                                <img src={i.get('coverUrl')} className='h-full' alt="" />
                             </div>
-                            <div className="w-full h-full"></div>
+                            <div className="w-full h-full flex flex-col p-5 justify-center">
+                                <h1 className="font-bold text-white text-lg truncate md:text-2xl lg:text-3xl xl:text-5xl">{i.get('title')}</h1>
+                                <div className='text-white line-clamp-3'>{i.get('description')}</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </SwiperSlide>
-            <SwiperSlide>
-                <div className=' bg-primary-600'>
-                    <div className="container mx-auto">
-                        <div className="flex gap-2">
-                            <div className="w-full">
-                                test
-                            </div>
-                            <div className="w-full"></div>
-                        </div>
-                    </div>
-                </div>
-            </SwiperSlide>
-            <SwiperSlide>
-                <div className=' bg-primary-600'>
-                    <div className="container mx-auto">
-                        <div className="flex gap-2">
-                            <div className="w-full">
-                                test
-                            </div>
-                            <div className="w-full"></div>
-                        </div>
-                    </div>
-                </div>
-            </SwiperSlide>
+            </SwiperSlide>)}
         </Swiper>
     )
 }

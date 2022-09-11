@@ -11,7 +11,7 @@ export default function Layout({ children }) {
     return <div
         className="flex flex-col justify-between min-h-screen relative items-stretch"
     >
-        <div className="h-[30px] bg-primary-600 px-3 flex items-center text-sm justify-between">
+        <div className="h-[30px] bg-primary-600 px-3 flex items-center text-sm justify-between sticky top-0 z-50">
             <div className="flex gap-2">
                 <Link href="/"><a className="flex items-center gap-2 text-white"><i className="fas fa-home"></i>หน้าแรกเว็บไซต์</a></Link>
                 <button onClick={windowBack} className="flex items-center gap-2 text-white"><><i className="fas fa-chevron-left"></i>ย้อนกลับ</></button>
