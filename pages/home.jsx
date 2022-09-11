@@ -47,7 +47,7 @@ export default function home() {
                                 <button className='main-button' onClick={() => gotoSlug('people')}>แสดงทั้งหมด <i className="fas fa-chevron-right"></i><i className="fas fa-chevron-right"></i></button>
                             </h1>
                             <div className="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-                                {data.filter(i => i.get('category')?.get('slug') == 'people').map((i, key) => <CardShow onClick={() => router.push(`/page/${i.id}?slug=${i.get('title')}`)} tagName={i.get('collection')?.get('title')} key={key} bg={i.get("coverUrl")} title={i.get('title')} description={replaceString(i, i.get('category')?.get('templateString') || '')}></CardShow>)}
+                                {data.filter(i => i.get('category')?.get('slug') == 'people').slice(0,6).map((i, key) => <CardShow onClick={() => router.push(`/page/${i.id}?slug=${i.get('title')}`)} tagName={i.get('collection')?.get('title')} key={key} bg={i.get("coverUrl")} title={i.get('title')} description={replaceString(i, i.get('category')?.get('templateString') || '')}></CardShow>)}
 
                             </div>
                         </div>
@@ -57,7 +57,7 @@ export default function home() {
                                 <button className='main-button' onClick={() => gotoSlug('tutorial')}>แสดงทั้งหมด <i className="fas fa-chevron-right"></i><i className="fas fa-chevron-right"></i></button>
                             </h1>
                             <div className="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-                                {data.filter(i => i.get('category')?.get('slug') == 'tutorial').map((i, key) => <CardShow onClick={() => router.push(`/page/${i.id}?slug=${i.get('title')}`)} tagName={i.get('collection')?.get('title')} key={key} bg={i.get("coverUrl")} title={i.get('title')} description={replaceString(i, i.get('category')?.get('templateString') || '')}></CardShow>)}
+                                {data.filter(i => i.get('category')?.get('slug') == 'tutorial').slice(0,6).map((i, key) => <CardShow onClick={() => router.push(`/page/${i.id}?slug=${i.get('title')}`)} tagName={i.get('collection')?.get('title')} key={key} bg={i.get("coverUrl")} title={i.get('title')} description={replaceString(i, i.get('category')?.get('templateString') || '')}></CardShow>)}
 
                             </div>
                         </div>
@@ -69,7 +69,7 @@ export default function home() {
                                 <button className='main-button' onClick={() => gotoSlug('media')}>แสดงทั้งหมด <i className="fas fa-chevron-right"></i><i className="fas fa-chevron-right"></i></button>
                             </h1>
                             <div className="grid grid-cols-1 gap-4">
-                                {data.filter(i => i.get('ebook')?.get('slug') == 'media').map((i, key) => <CardShow video={true} onClick={() => router.push(`/page/${i.id}?slug=${i.get('title')}`)} tagName={i.get('collection')?.get('title')} key={key} bg={i.get("coverUrl")} title={i.get('title')} description={replaceString(i, i.get('category')?.get('templateString') || '')}></CardShow>)}
+                                {data.filter(i => i.get('ebook')?.get('slug') == 'media').slice(0,2).map((i, key) => <CardShow video={true} onClick={() => router.push(`/page/${i.id}?slug=${i.get('title')}`)} tagName={i.get('collection')?.get('title')} key={key} bg={i.get("coverUrl")} title={i.get('title')} description={replaceString(i, i.get('category')?.get('templateString') || '')}></CardShow>)}
                                 {data.filter(i => i.get('ebook')?.get('slug') == 'media').length < 1 && <div className='h-[300px] rounded-xl border flex items-center justify-center border-neutral-50'>
                                     ยังไม่มีเนื้อหาสำหรับสื่อคุณธรรม
                                 </div>}
@@ -81,7 +81,7 @@ export default function home() {
                                 <button className='main-button' onClick={() => gotoSlug('doc-book')}>แสดงทั้งหมด <i className="fas fa-chevron-right"></i><i className="fas fa-chevron-right"></i></button>
                             </h1>
                             <div className="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-4">
-                                {data.filter(i => i.get('ebook')?.get('slug') == 'doc-book').map((i, key) => <CardShow onClick={() => router.push(`/page/${i.id}?slug=${i.get('title')}`)} tagName={i.get('collection')?.get('title')} key={key} bg={i.get("coverUrl")} title={i.get('title')} description={replaceString(i, i.get('category')?.get('templateString') || '')}></CardShow>)}
+                                {data.filter(i => i.get('ebook')?.get('slug') == 'doc-book').slice(0,4).map((i, key) => <CardShow onClick={() => router.push(`/page/${i.id}?slug=${i.get('title')}`)} tagName={i.get('collection')?.get('title')} key={key} bg={i.get("coverUrl")} title={i.get('title')} description={replaceString(i, i.get('category')?.get('templateString') || '')}></CardShow>)}
                                 {data.filter(i => i.get('ebook')?.get('slug') == 'doc-book').length < 1 && <div className='h-[300px] rounded-xl border flex items-center justify-center border-neutral-50  col-span-2'>
                                     ยังไม่มีเนื้อหาสำหรับคู่มือ / Ebook
                                 </div>}

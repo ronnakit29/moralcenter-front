@@ -17,7 +17,7 @@ export default function Layout({ children }) {
                 <button onClick={windowBack} className="flex items-center gap-2 text-white"><><i className="fas fa-chevron-left"></i>ย้อนกลับ</></button>
 
             </div>
-            <Link href="/login"><a className="flex items-center gap-2 text-white"><i className="fas fa-user-secret"></i>เข้าสู่ระบบแอดมิน</a></Link>
+            <a target={'_blank'} className="flex items-center gap-2 text-white" href={`${process.env.NEXT_PUBLIC_EXTERNAL_MANAGER}/dashboard/login`}><i className="fas fa-user-secret"></i>เข้าสู่ระบบแอดมิน</a>
         </div>
         <div className="static w-full min-h-[620px]">
             {children}
