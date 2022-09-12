@@ -12,6 +12,7 @@
     "daisyui": "^2.24.0",
     "next": "latest",
     "parse": "^3.4.4",
+    "quill": "^1.3.7",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-image-gallery": "^1.2.9",

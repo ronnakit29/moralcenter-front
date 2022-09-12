@@ -11,3 +11,13 @@
   .under-secondary-line{ 
     @apply md:text-xl text-xl lg:text-3xl font-bold text-primary-600 border-b-4 border-secondary-500 pb-3 mb-3;
   }
+
+  .ql-align-center {
+    @apply flex justify-center;
+  }
+  .ql-align-left {
+    @apply flex justify-center;
+  }
+  .ql-align-right {
+    @apply flex justify-center;
+  }

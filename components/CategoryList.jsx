@@ -5,6 +5,7 @@ export default function CategoryList({ bg, size, activeRoute, categories }) {
     const [data, setData] = useState([])
     async function fetch() {
         const query = new ParseService.Query("Collection")
+        query.ascending("priority")
         const response = await query.find()
         setData(response)
     }
