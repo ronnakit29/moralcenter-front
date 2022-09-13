@@ -1,8 +1,18 @@
+import { useRouter } from 'next/router'
 import React from 'react'
+import { useEffect } from 'react'
+import ParseService from '../plugins/ParseService'
 
 export default function Navbar() {
-    function submitSearch() {
+    const [search, setSearch] = React.useState('')
+    const router = useRouter()
+    async function submitSearch(e) {
+        e.preventDefault();
+        try {
+            router.push('/search/?input=' + search + '&mode=search')
+        } catch (error) {
 
+        }
     }
     return (
         <nav className="w-full flex items-center flex-col lg:flex-row justify-between px-3 py-3">
@@ -16,6 +26,7 @@ export default function Navbar() {
                     type="text"
                     className="rounded-2xl w-full flex items-center px-3 h-[40px] border-primary-600 border outline-none text-lg italic text-center focus:ring-1 ring-primary-600 font-semibold"
                     placeholder="ค้นหาต้นแบบคุณธรรม"
+                    onChange={(e) => { setSearch(e.target.value) }}
                 />
                 <button className="bg-primary-600  text-white rounded-2xl text-lg items-center px-3 h-[40px] focus:ring-2 ring-primary-700 transition-all">ค้นหา</button>
             </form>
