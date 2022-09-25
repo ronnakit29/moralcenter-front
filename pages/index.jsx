@@ -13,7 +13,7 @@ export default function Home() {
     router.push('/search?input=' + search + '&mode=search')
   }
   return (
-    <Layout>
+    <Layout dissub={true}>
       <div className="max-w-6xl mx-auto py-10 px-3">
         <div className="flex flex-col text-center items-center justify-center gap-5">
           <div id="logo" className="w-[130px] h-[130px] flex items-center justify-center relative mb-5">
@@ -28,7 +28,9 @@ export default function Home() {
               <button type='submit' className='hidden'></button>
             </div>
           </form>
-          <CategoryList></CategoryList>
+          <div className=''>
+            <CategoryList></CategoryList>
+          </div>
           <div>
             <Link href="/home"><button className="bg-primary-600 rounded-full px-4 py-3 text-xl font-bold text-white hover:bg-primary-700 transition-all focus:ring-2 ring-primary-700">เข้าสู่หน้าหลัก</button></Link>
           </div>

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import FooterComponent from './FooterComponent'
 
-export default function Layout({ children }) {
+export default function Layout({ children, dissub }) {
     const router = useRouter()
     function windowBack() {
         router.back()
@@ -13,7 +13,7 @@ export default function Layout({ children }) {
     >
         <div className="h-[30px] bg-primary-600 px-3 flex items-center text-sm justify-between sticky top-0 z-50">
             <div className="flex gap-2">
-                <Link href="/"><a className="flex items-center gap-2 text-white"><i className="fas fa-home"></i>หน้าแรกเว็บไซต์</a></Link>
+                <Link href="/home"><a className="flex items-center gap-2 text-white"><i className="fas fa-home"></i>หน้าแรกเว็บไซต์</a></Link>
                 <button onClick={windowBack} className="flex items-center gap-2 text-white"><><i className="fas fa-chevron-left"></i>ย้อนกลับ</></button>
 
             </div>
@@ -23,7 +23,7 @@ export default function Layout({ children }) {
             {children}
         </div>
         <div>
-            <FooterComponent></FooterComponent>
+            <FooterComponent dissub={dissub}></FooterComponent>
             <div className="h-[30px] bg-secondary-500"></div>
         </div>
     </div >
