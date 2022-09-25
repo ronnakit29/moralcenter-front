@@ -10,7 +10,7 @@ export default function GalleryBox({ items }) {
     return (
         <div>
             <div className="mb-5 grid lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2 grid-cols-2  gap-4">
-                {items.map((i, key) => <img key={key} className='transition-all hover:scale-105 transform cursor-pointer h-[200px]' src={i} onClick={() => handlerShow(key)} />)}
+                {items.map((i, key) => <img key={key} className='transition-all hover:scale-105 transform cursor-pointer' src={i} onClick={() => handlerShow(key)} />)}
             </div>
             {show && <div className='fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-30 flex items-center justify-center'  >
                 <div id="close" className='w-screen h-screen absolute z-0' onClick={()=>setShow(false)}></div>

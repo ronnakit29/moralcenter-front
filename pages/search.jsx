@@ -47,7 +47,7 @@ export default function search() {
         <ContentViewLayout pages={["ค้นหา", slug, region, province, district, input]}>
             <div className="max-w-6xl mx-auto mb-5 px-3">
                 <div className="grid lg:grid-cols-3 gap-4 grid-cols-1 md:grid-cols-3 sm:grid-cols-2">
-                    {data.map((i, key) => <CardShowV2 category={i.get('category')?.get('title')} onClick={() => router.push(`/page/${i.id}?s=${i.get('title')}`)} bg={i.get('coverUrl')} title={i.get('title')} tagName={i.get('collection')?.get('title')} tagColor={i.get('collection')?.get('color')} description={replaceString(i, i.get("category")?.get('templateString') || '')}></CardShowV2>)}
+                    {data.map((i, key) => <CardShowV2 key={key} category={i.get('category')?.get('title')} onClick={() => router.push(`/page/${i.id}?s=${i.get('title')}`)} bg={i.get('coverUrl')} title={i.get('title')} tagName={i.get('collection')?.get('title')} tagColor={i.get('collection')?.get('color')} description={replaceString(i, i.get("category")?.get('templateString') || '')}></CardShowV2>)}
                 </div>
                 {loading ? <div className='w-full h-[200px] flex items-center justify-center'>
                     <i className="fas fa-spinner animate-spin"></i>

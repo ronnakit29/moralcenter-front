@@ -13,17 +13,18 @@ export default function slug() {
     const [data, setData] = React.useState({})
     async function fetch() {
         try {
-            const response = await ParseService.Cloud.run('firstPage', { include: 'collection,category,parentPage', equal: `objectId:${id}` })
+            const response = await ParseService.Cloud.run('firstPage', { include: 'collection,category,parentPage.category', equal: `objectId:${id}` })
             setData(response)
         } catch (error) {
 
         }
     }
     useEffect(() => {
-        fetch()
-    }, [router.isReady])
+        if (router.isReady)
+            fetch()
+    }, [router.isReady, router.query])
     return (data?.id ?
-        <ContentViewLayout pages={[data.get("collection").get('title'), data.get('title')]}>
+        <ContentViewLayout pages={[data.get("collection")?.get('title'), data.get('title')]} hideRegion={true}>
             <div className='max-w-6xl mx-auto px-3'>
                 <div className='mb-5'>
                     <h1 className="text-lg md:text-xl lg:text-4xl font-semibold text-primary-600 line-clamp-2 lg:line-clamp-1">{data.get('title')}</h1>
@@ -35,19 +36,21 @@ export default function slug() {
                         <img src={data.get('coverUrl')} className='w-full rounded-3xl bg-contain bg-center bg-no-repeat' />
                     </div>
                     {data.get('parentPage')?.id && <div className="col-span-4 lg:col-span-1">
-                        <div className='bg-primary-600 lg:h-[500px] rounded-3xl p-5 flex flex-row lg:flex-col items-center gap-4'>
-                            <div className="bg-white w-[70px] block h-[70px] lg:w-[250px] lg:h-[250px] rounded-full"></div>
+                        <div onClick={() => router.push(`/page/${data.get('parentPage')?.id}`)} className='bg-primary-600 lg:h-[500px] rounded-3xl p-5 flex flex-row lg:flex-col items-center gap-4 hover:shadow-lg transition-all cursor-pointer'>
+                            <div className="bg-white w-[70px] block h-[70px] lg:w-[250px] lg:h-[250px] rounded-full bg-contain bg-center bg-no-repeat" style={{ backgroundImage: `url('${data.get('parentPage')?.get('coverUrl')}')` }}></div>
                             <div className='text-left lg:text-center w-2/3'>
                                 <div className='text-base md:text-2xl font-semibold text-white'>
-                                    พระอาจารย์ พระอาจารย์ พระอาจารย์
+                                    {data.get('parentPage').get('title')}
                                 </div>
-                                <div className='text-sm lg:text-lg text-white'>
+                                {/* <div className='text-sm lg:text-lg text-white'>
                                     ตำแหน่ง
-                                </div>
+                                </div> */}
                                 <div className='text-sm lg:text-lg text-white line-clamp-2'>
-                                    รายละเอียดย่อ รายละเอียดย่อ รายละเอียดย่อ รายละเอียดย่อ รายละเอียดย่อ รายละเอียดย่อ รายละเอียดย่อ
+                                    {replaceString(data.get('parentPage'), data.get('parentPage').get("category")?.get('templateString') || '')}
                                 </div>
-
+                                <div className='text-white py-3'>
+                                    <i className="fas fa-link mr-2"></i> คลิ๊กดูเพิ่มเติม
+                                </div>
                             </div>
                         </div>
                     </div>}
@@ -60,10 +63,10 @@ export default function slug() {
                 <GalleryBox items={data.get('images')}></GalleryBox>
                 <div className='text-center rounded-3xl bg-neutral-200 p-5  mb-5'>
                     <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-4 grid-cols-1'>
-                        {data.get('pdfUrl') && <a className='bg-white flex items-center justify-center  py-3 rounded-full' href={data.get('pdfUrl')} target={"_blank"}>
+                        {data.get('pdfUrl') && <a className='bg-white flex items-center justify-center  py-3 h-12 rounded-full' href={data.get('pdfUrl')} target={"_blank"}>
                             <i className="fas fa-file-pdf text-lg mr-2 text-red-500"></i> ดาวน์โหลดเอกสาร PDF
                         </a>}
-                        {data.get('infoGraphicUrl') && <a className='bg-primary-600 flex items-center justify-center rounded-full  text-white' href={data.get('infoGraphicUrl')} target={"_blank"}>
+                        {data.get('infoGraphicUrl') && <a className='bg-primary-600 flex items-center justify-center h-12 rounded-full  text-white' href={data.get('infoGraphicUrl')} target={"_blank"}>
                             <div className='text-left'>
                                 <div className="text-lg">ดาวน์โหลด Info Graphic</div>
                             </div>
