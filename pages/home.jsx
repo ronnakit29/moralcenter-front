@@ -134,7 +134,7 @@ export function CardShowV2({ bg, link, href, title, description, onClick, video,
     return <div className="card shadow-xl hover:scale-95 transition-all cursor-pointer bg-primary-600" onClick={checkLink}>
         <div style={{ backgroundImage: `url('${bg}')` }} className="bg-cover bg-no-repeat h-[190px] rounded-b-3xl block">
             {video && <div className="absolute w-full h-full flex items-center justify-center"><i className="fas fa-play text-xl text-white bg-secondary-500 w-16 shadow-lg h-16 flex items-center justify-center rounded-full"></i></div>}
-            {tagName && <span className={`absolute top-2 left-2 rounded-full px-3 text-white ${tagColor || 'bg-emerald-400'}`}>{tagName}</span>}
+            {tagName && <span className={`absolute top-2 left-2 rounded-full px-3 text-white ${tagColor || 'bg-emerald-400'}`} style={{backgroundColor: tagColor}}>{tagName}</span>}
             {category && <span className={`absolute top-10 left-2 rounded-full px-3 text-black bg-white`}>{category}</span>}
         </div>
         <div className="card-body">
