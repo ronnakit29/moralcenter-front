@@ -62,20 +62,20 @@ export default function slug() {
                 </div>
                 <GalleryBox items={data.get('images')}></GalleryBox>
                 <div className='text-center rounded-3xl bg-neutral-200 p-5  mb-5'>
-                    <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-4 grid-cols-1'>
-                        {data.get('pdfUrl') && <a className='bg-white flex items-center justify-center  py-3 h-12 rounded-full' href={data.get('pdfUrl')} target={"_blank"}>
+                    <div className='flex flex-col md:flex-row items-center gap-4 justify-center'>
+                        {data.get('pdfUrl') && <a className='bg-white flex items-center justify-center  w-full max-w-sm py-3 h-12 rounded-full' href={data.get('pdfUrl')} target={"_blank"}>
                             <i className="fas fa-file-pdf text-lg mr-2 text-red-500"></i> ดาวน์โหลดเอกสาร PDF
                         </a>}
-                        {data.get('infoGraphicUrl') && <a className='bg-primary-600 flex items-center justify-center h-12 rounded-full  text-white' href={data.get('infoGraphicUrl')} target={"_blank"}>
+                        {data.get('infoGraphicUrl') && <a className='bg-primary-600 flex items-center  w-full max-w-sm justify-center h-12 rounded-full  text-white' href={data.get('infoGraphicUrl')} target={"_blank"}>
                             <div className='text-left'>
                                 <div className="text-lg">ดาวน์โหลด Info Graphic</div>
                             </div>
                         </a>}
-                        {data.get('contacts').length > 0 && <div className='flex flex-col gap-4 justify-center'>
+                        {data.get('contacts').length > 0 && <div className='flex flex-col gap-4 justify-center w-full max-w-sm'>
                             <h1 className="text-2xl font-semibold">ติดต่อได้โดยตรง</h1>
                             {data.get('contacts').map((i, key) => <div key={i} className="main-button">{i}</div>)}
                         </div>}
-                        <div className='flex items-center justify-center'>
+                        <div className='flex items-center justify-center w-full max-w-sm'>
                             <div className="grid grid-cols-3 gap-4">
                                 {data.get('messengerUrl') && <a target={'_blank'} href={data.get('messengerUrl')} className="w-20 h-20 bg-sky-400 rounded-full flex items-center justify-center">
                                     <i className="fab fa-facebook-messenger text-2xl text-white"></i>

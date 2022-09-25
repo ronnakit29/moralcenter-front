@@ -37,7 +37,9 @@ iframe.ql-video {
   width: 600px;
   height: 400px;
 }
-
+.ql-video{
+  @apply mx-auto !important;  
+}
 h1{
   @apply text-2xl;
 }
