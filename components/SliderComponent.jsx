@@ -20,7 +20,7 @@ export default function SliderComponent() {
         fetch()
     }, [])
     return (
-        <Swiper slidesPerView={1} modules={[Pagination]} autoplay navigation={true}>
+        <Swiper slidesPerView={1} modules={[Pagination,Navigation]} autoplay navigation={true}>
             {data.map((i, key) => <SwiperSlide key={key}>
                 <div className=' bg-primary-900 h-fit'>
                     <div className="container mx-auto">
