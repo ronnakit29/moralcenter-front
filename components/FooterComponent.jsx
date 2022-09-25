@@ -1,9 +1,13 @@
 import React from 'react'
+import CategoryList from './CategoryList'
 
 export default function FooterComponent() {
     return (
         <div className="bg-primary-600 text-white py-3">
             <footer className="max-w-screen-2xl px-4 md:px-8 mx-auto">
+                <div className="mx-auto max-w-xl">
+                    <CategoryList bg={"bg-primary-600"}></CategoryList>
+                </div>
                 <div className="flex flex-col items-center pt-6">
                     <h1 className="text-4xl font-bold mb-8">Get in Touch</h1>
 

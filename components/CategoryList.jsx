@@ -18,7 +18,7 @@ export default function CategoryList({ bg, size, activeRoute, categories }) {
     }, [])
     return (
         <div
-            className={`${bg || "bg-gray-100"} rounded-3xl p-5 w-full ${data.length > 5 ? 'lg:flex grid grid-cols-3 sm:grid-cols-6' : 'grid grid-cols-5'} justify-between gap-2 lg:gap-10`}
+            className={`${bg || "bg-gray-100"} rounded-3xl p-5 w-full ${data.length > 5 ? 'lg:flex grid grid-cols-3 sm:grid-cols-6' : 'grid grid-cols-5'} justify-between gap-2 lg:gap-4`}
         >
             {/* {JSON.stringify()} */}
             {data.map((i, key) => <div key={key}>
