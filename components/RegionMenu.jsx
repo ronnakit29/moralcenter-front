@@ -7,6 +7,8 @@ export default function RegionMenu() {
     function regionTo(region) {
         const query = router.query
         query.region = region
+        query.input = ""
+        query.mode = ""
         router.push({ pathname: router.pathname, query: query })
     }
     const regionList = [
