@@ -37,3 +37,10 @@ iframe.ql-video {
   width: 600px;
   height: 400px;
 }
+
+h1{
+  @apply text-2xl;
+}
+h2{
+  @apply text-xl;
+}

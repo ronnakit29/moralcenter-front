@@ -31,7 +31,7 @@ export default function slug() {
 
                 </div>
                 <div className='grid grid-cols-4 gap-4 mb-5'>
-                    <div className={`lg:col-span-3 flex justify-center ${!data.get('parentPage')?.id && 'lg:col-span-4 '}`}>
+                    <div className={` flex justify-center ${!data.get('parentPage')?.id ? 'col-span-4 ' : 'col-span-4 lg:col-span-3'}`}>
                         <img src={data.get('coverUrl')} className='w-full rounded-3xl bg-contain bg-center bg-no-repeat' />
                     </div>
                     {data.get('parentPage')?.id && <div className="col-span-4 lg:col-span-1">
@@ -60,19 +60,18 @@ export default function slug() {
                 <GalleryBox items={data.get('images')}></GalleryBox>
                 <div className='text-center rounded-3xl bg-neutral-200 p-5  mb-5'>
                     <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-4 grid-cols-1'>
-                        <div className='bg-white flex items-center justify-center rounded-xl h-[150px]'>
-                            <i className="fas fa-file-pdf text-7xl text-red-500"></i>
-                        </div>
-                        <div className='bg-primary-600 flex items-center justify-center rounded-xl h-[150px] text-white'>
+                        {data.get('pdfUrl') && <a className='bg-white flex items-center justify-center  py-3 rounded-full' href={data.get('pdfUrl')} target={"_blank"}>
+                            <i className="fas fa-file-pdf text-lg mr-2 text-red-500"></i> ดาวน์โหลดเอกสาร PDF
+                        </a>}
+                        {data.get('infoGraphicUrl') && <a className='bg-primary-600 flex items-center justify-center rounded-full  text-white' href={data.get('infoGraphicUrl')} target={"_blank"}>
                             <div className='text-left'>
-                                <h1 className="text-3xl">INFO</h1>
-                                <h1 className="text-2xl">Graphic</h1>
+                                <div className="text-lg">ดาวน์โหลด Info Graphic</div>
                             </div>
-                        </div>
-                        <div className='flex flex-col gap-4 justify-center'>
+                        </a>}
+                        {data.get('contacts').length > 0 && <div className='flex flex-col gap-4 justify-center'>
                             <h1 className="text-2xl font-semibold">ติดต่อได้โดยตรง</h1>
                             {data.get('contacts').map((i, key) => <div key={i} className="main-button">{i}</div>)}
-                        </div>
+                        </div>}
                         <div className='flex items-center justify-center'>
                             <div className="grid grid-cols-3 gap-4">
                                 {data.get('messengerUrl') && <a target={'_blank'} href={data.get('messengerUrl')} className="w-20 h-20 bg-sky-400 rounded-full flex items-center justify-center">
