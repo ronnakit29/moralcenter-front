@@ -14,10 +14,10 @@ export default function home() {
     async function fetch() {
         try {
             const responsePeople = await ParseService.Cloud.run("fetchPostByCategory", { categorySlug: "people" })
-            const responseBook = await ParseService.Cloud.run("fetchPostByCategory", { categorySlug: "doc-bool" })
+            const responseBook = await ParseService.Cloud.run("fetchPostByCategory", { categorySlug: "doc-book" })
             const responseTutorial = await ParseService.Cloud.run("fetchPostByCategory", { categorySlug: "tutorial" })
             const responseMedia = await ParseService.Cloud.run("fetchPostByCategory", { categorySlug: "media" })
-            
+
             setPeopleData(responsePeople.filter(i => i.get('category')?.get('slug') == 'people'))
             setDocBookData(responseBook.filter(i => i.get('category')?.get('slug') == 'doc-book'))
             setTutorialData(responseTutorial.filter(i => i.get('category')?.get('slug') == 'tutorial'))

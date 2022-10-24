@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import React from 'react'
+import { useEffect } from 'react'
 import { getAllProvince, getDistrictByProvince } from '../plugins/thailand_query'
 
 export default function RegionMenu() {
@@ -32,6 +33,10 @@ export default function RegionMenu() {
         query.district = district
         router.push({ pathname: router.pathname, query: query })
     }
+    useEffect(() => {
+        router.query.province = ""
+        router.query.region = ""
+    }, [router.query.search, router.query.mode, router.query.input,router.query.region])
     return (
         <div className='flex gap-4 items-center flex-wrap'>
 
@@ -39,12 +44,14 @@ export default function RegionMenu() {
                 {regionList.map((i, key) => <button key={key} className="main-button min-w-min" onClick={() => regionTo(i)}>{i.search('กรุงเทพ') ? 'ภาค' : ''}{i}</button>)}
             </div>
             <div className='flex gap-4 w-full lg:w-[300px]'>
-                <select className='main-input' onChange={(e) => linkProvince(e.target.value)}>
+                <select className='main-input' onChange={(e) => linkProvince(e.target.value)}
+                    value={router.query.province || ""}>
                     <option value="">จังหวัด</option>
                     {allProvince.map((i, key) => <option key={key} value={i.name_th}>{i.name_th}</option>)}
                 </select>
                 <select className='main-input'
                     onChange={(e) => linkDistrict(e.target.value)}
+                    value={router.query.district}
                 >
                     <option value="">อำเภอ</option>
                     {districtList.map((i, key) => <option key={key} value={i.name_th}>{i.name_th}</option>)}
