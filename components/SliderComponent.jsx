@@ -29,8 +29,11 @@ export default function SliderComponent() {
                                 <img src={i.get('coverUrl')} className='h-full' alt="" />
                             </div>
                             <div className="w-full h-full flex flex-col p-5 justify-center">
-                                <h1 className="font-bold text-white text-lg truncate md:text-2xl lg:text-3xl xl:text-5xl">{i.get('title')}</h1>
+                                <h1 className="font-bold text-white text-lg line-clamp-2 md:text-2xl lg:text-3xl xl:text-5xl pb-3">{i.get('title')}</h1>
                                 <div className='text-white line-clamp-3'>{i.get('description')}</div>
+                                <div className="flex justify-end py-2">
+                                    {i.get('linkUrl') && <a href={i.get('linkUrl')} className="bg-white text-black rounded-full px-3 py-2">อ่านต่อ</a>}
+                                </div>
                             </div>
                         </div>
                     </div>

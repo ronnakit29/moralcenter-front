@@ -5,7 +5,7 @@ export default function FooterComponent({ dissub }) {
     return (
         <div className="bg-primary-600 text-white py-3">
             <footer className="max-w-screen-2xl px-4 md:px-8 mx-auto">
-                {!dissub && <div className="mx-auto max-w-xl">
+                {!dissub && <div className="mx-auto max-w-xl z-0">
                     <CategoryList bg={"bg-primary-600"}></CategoryList>
                 </div>}
                 <div className="flex flex-col items-center pt-6">

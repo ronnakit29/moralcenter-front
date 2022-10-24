@@ -27,7 +27,7 @@ export default function slug() {
         <ContentViewLayout pages={[data.get("collection")?.get('title'), data.get('title')]} hideRegion={true}>
             <div className='max-w-6xl mx-auto px-3'>
                 <div className='mb-5'>
-                    <h1 className="text-lg md:text-xl lg:text-4xl font-semibold text-primary-600 line-clamp-2 lg:line-clamp-1">{data.get('title')}</h1>
+                    <h1 className="text-lg md:text-xl lg:text-4xl font-semibold text-primary-600 line-clamp-2 lg:line-clamp-1 pt-2 pb-2">{data.get('title')}</h1>
                     <p className=' text-primary-600 text-lg'>{replaceString(data, data.get("category")?.get('templateString') || '')}</p>
 
                 </div>

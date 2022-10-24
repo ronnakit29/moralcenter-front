@@ -13,11 +13,15 @@ export default function home() {
     const [mediaData, setMediaData] = React.useState([])
     async function fetch() {
         try {
-            const response = await ParseService.Cloud.run("allPage", { include: "collection,category" })
-            setPeopleData(response.filter(i => i.get('category')?.get('slug') == 'people'))
-            setDocBookData(response.filter(i => i.get('category')?.get('slug') == 'doc-book'))
-            setTutorialData(response.filter(i => i.get('category')?.get('slug') == 'tutorial'))
-            setMediaData(response.filter(i => i.get('category')?.get('slug') == 'media'))
+            const responsePeople = await ParseService.Cloud.run("fetchPostByCategory", { categorySlug: "people" })
+            const responseBook = await ParseService.Cloud.run("fetchPostByCategory", { categorySlug: "doc-bool" })
+            const responseTutorial = await ParseService.Cloud.run("fetchPostByCategory", { categorySlug: "tutorial" })
+            const responseMedia = await ParseService.Cloud.run("fetchPostByCategory", { categorySlug: "media" })
+            
+            setPeopleData(responsePeople.filter(i => i.get('category')?.get('slug') == 'people'))
+            setDocBookData(responseBook.filter(i => i.get('category')?.get('slug') == 'doc-book'))
+            setTutorialData(responseTutorial.filter(i => i.get('category')?.get('slug') == 'tutorial'))
+            setMediaData(responseMedia.filter(i => i.get('category')?.get('slug') == 'media'))
         } catch (error) {
 
         }
