@@ -76,20 +76,26 @@ export default function slug() {
                             {data.get('contacts').map((i, key) => <div key={i} className="main-button">{i}</div>)}
                         </div>}
                         <div className='flex items-center justify-center w-full max-w-sm'>
-                            <div className="grid grid-cols-3 gap-4">
-                                {data.get('messengerUrl') && <a target={'_blank'} href={data.get('messengerUrl')} className="w-20 h-20 bg-sky-400 rounded-full flex items-center justify-center">
-                                    <i className="fab fa-facebook-messenger text-2xl text-white"></i>
+                            <div className="grid grid-cols-3 gap-2">
+                                {data.get('messengerUrl') && <a target={'_blank'} href={data.get('messengerUrl')} className="w-14 h-14 bg-sky-400 rounded-full flex items-center justify-center">
+                                    <i className="fab fa-facebook-messenger text-3xl text-white"></i>
                                 </a>}
                                 {data.get('lineUrl') && <a target={'_blank'}
                                     href={data.get('lineUrl')}
-                                    className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center">
-                                    <i className="fab fa-line text-2xl text-white"></i>
+                                    className="w-14 h-14 bg-green-500 rounded-full flex items-center justify-center">
+                                    <i className="fab fa-line text-3xl text-white"></i>
 
                                 </a>}
                                 {data.get('youtubeUrl') && <a target={'_blank'}
                                     href={data.get('youtubeUrl')}
-                                    className="w-20 h-20 bg-red-600 rounded-full flex items-center justify-center">
-                                    <i className="fab fa-youtube text-2xl text-white"></i>
+                                    className="w-14 h-14 bg-red-600 rounded-full flex items-center justify-center">
+                                    <i className="fab fa-youtube text-3xl text-white"></i>
+
+                                </a>}
+                                {data.get("mapsUrl") && <a target={'_blank'}
+                                    href={data.get('mapsUrl')}
+                                    className="w-14 h-14 bg-orange-600 rounded-full flex items-center justify-center">
+                                    <i className="fas fa-map text-3xl text-white"></i>
 
                                 </a>}
                             </div>
