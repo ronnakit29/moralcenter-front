@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import React from 'react'
 import { useEffect } from 'react'
+import ParseService from '../plugins/ParseService'
 import { getAllProvince, getDistrictByProvince } from '../plugins/thailand_query'
 
 export default function RegionMenu() {
@@ -12,15 +13,15 @@ export default function RegionMenu() {
         query.mode = ""
         router.push({ pathname: router.pathname, query: query })
     }
-    const regionList = [
-        "เหนือ",
-        "กลาง",
-        "ใต้",
-        "ตะวันออกเฉียงเหนือ",
-        "ตะวันออก",
-        "ตะวันตก",
-        "กรุงเทพฯ"
-    ]
+    const [regionList, setRegionList] = React.useState([])
+    async function regionListFetch(){
+        try {
+            const response = await ParseService.Cloud.run("allRegion")
+            setRegionList(response)
+        } catch (error) {
+            
+        }
+    }
     const allProvince = getAllProvince()
     const districtList = getDistrictByProvince(router.query.province)
     function linkProvince(province) {
@@ -35,13 +36,13 @@ export default function RegionMenu() {
     }
     useEffect(() => {
         router.query.province = ""
-        router.query.region = ""
-    }, [router.query.search, router.query.mode, router.query.input,router.query.region])
+        regionListFetch()
+    }, [router.query.search, router.query.mode, router.query.input, router.query.region])
     return (
         <div className='flex gap-4 items-center flex-wrap'>
 
             <div className="flex gap-2 flex-wrap">
-                {regionList.map((i, key) => <button key={key} className="main-button min-w-min" onClick={() => regionTo(i)}>{i.search('กรุงเทพ') ? 'ภาค' : ''}{i}</button>)}
+                {regionList.map((i, key) => <button key={key} className="main-button min-w-min" onClick={() => regionTo(i.get('name'))}>{i.get('name').search('กรุงเทพ') ? 'ภาค' : ''}{i.get('name')}</button>)}
             </div>
             <div className='flex gap-4 w-full lg:w-[300px]'>
                 <select className='main-input' onChange={(e) => linkProvince(e.target.value)}

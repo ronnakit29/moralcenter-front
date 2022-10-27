@@ -56,7 +56,7 @@ export default function home() {
                                 <button className='main-button' onClick={() => gotoSlug('people')}>แสดงทั้งหมด <i className="fas fa-chevron-right"></i><i className="fas fa-chevron-right"></i></button>
                             </h1>
                             <div className="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-                                {peopleData.slice(0,6).map((i, key) => <CardShow tagColor={i.get('collection')?.get('color')} onClick={() => router.push(`/page/${i.id}?slug=${i.get('title')}`)} tagName={i.get('collection')?.get('title')} key={key} bg={i.get("coverUrl")} title={i.get('title')} description={replaceString(i, i.get('category')?.get('templateString') || '')}></CardShow>)}
+                                {peopleData.slice(0, 6).map((i, key) => <CardShow tagColor={i.get('collection')?.get('color')} onClick={() => router.push(`/page/${i.id}?slug=${i.get('title')}`)} tagName={i.get('collection')?.get('title')} key={key} bg={i.get("coverUrl")} title={i.get('title')} description={replaceString(i, i.get('category')?.get('templateString') || '')}></CardShow>)}
 
                             </div>
                         </div>
@@ -66,7 +66,7 @@ export default function home() {
                                 <button className='main-button' onClick={() => gotoSlug('tutorial')}>แสดงทั้งหมด <i className="fas fa-chevron-right"></i><i className="fas fa-chevron-right"></i></button>
                             </h1>
                             <div className="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4">
-                                {tutorialData.slice(0,6).map((i, key) => <CardShow tagColor={i.get('collection')?.get('color')} onClick={() => router.push(`/page/${i.id}?slug=${i.get('title')}`)} tagName={i.get('collection')?.get('title')} key={key} bg={i.get("coverUrl")} title={i.get('title')} description={replaceString(i, i.get('category')?.get('templateString') || '')}></CardShow>)}
+                                {tutorialData.slice(0, 6).map((i, key) => <CardShow tagColor={i.get('collection')?.get('color')} onClick={() => router.push(`/page/${i.id}?slug=${i.get('title')}`)} tagName={i.get('collection')?.get('title')} key={key} bg={i.get("coverUrl")} title={i.get('title')} description={replaceString(i, i.get('category')?.get('templateString') || '')}></CardShow>)}
 
                             </div>
                         </div>
@@ -78,7 +78,7 @@ export default function home() {
                                 <button className='main-button' onClick={() => gotoSlug('media')}>แสดงทั้งหมด <i className="fas fa-chevron-right"></i><i className="fas fa-chevron-right"></i></button>
                             </h1>
                             <div className="grid grid-cols-1 gap-4">
-                                {mediaData.slice(0,2).map((i, key) => <CardShow tagColor={i.get('collection')?.get('color')} video={true} onClick={() => router.push(`/page/${i.id}?slug=${i.get('title')}`)} tagName={i.get('collection')?.get('title')} key={key} bg={i.get("coverUrl")} title={i.get('title')} description={replaceString(i, i.get('category')?.get('templateString') || '')}></CardShow>)}
+                                {mediaData.slice(0, 2).map((i, key) => <CardShow tagColor={i.get('collection')?.get('color')} video={true} onClick={() => router.push(`/page/${i.id}?slug=${i.get('title')}`)} tagName={i.get('collection')?.get('title')} key={key} bg={i.get("coverUrl")} title={i.get('title')} description={replaceString(i, i.get('category')?.get('templateString') || '')}></CardShow>)}
                                 {mediaData.length < 1 && <div className='h-[300px] rounded-xl border flex items-center justify-center border-neutral-50'>
                                     ยังไม่มีเนื้อหาสำหรับสื่อคุณธรรม
                                 </div>}
@@ -90,7 +90,7 @@ export default function home() {
                                 <button className='main-button' onClick={() => gotoSlug('doc-book')}>แสดงทั้งหมด <i className="fas fa-chevron-right"></i><i className="fas fa-chevron-right"></i></button>
                             </h1>
                             <div className="grid grid-cols-1 md:grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 gap-4">
-                                {docBookData.slice(0,4).map((i, key) => <CardShow tagColor={i.get('collection')?.get('color')} onClick={() => router.push(`/page/${i.id}?slug=${i.get('title')}`)} tagName={i.get('collection')?.get('title')} key={key} bg={i.get("coverUrl")} title={i.get('title')} description={replaceString(i, i.get('category')?.get('templateString') || '')}></CardShow>)}
+                                {docBookData.slice(0, 4).map((i, key) => <CardShow tagColor={i.get('collection')?.get('color')} onClick={() => router.push(`/page/${i.id}?slug=${i.get('title')}`)} tagName={i.get('collection')?.get('title')} key={key} bg={i.get("coverUrl")} title={i.get('title')} description={replaceString(i, i.get('category')?.get('templateString') || '')}></CardShow>)}
                                 {docBookData.length < 1 && <div className='h-[300px] rounded-xl border flex items-center justify-center border-neutral-50  col-span-2'>
                                     ยังไม่มีเนื้อหาสำหรับคู่มือ / Ebook
                                 </div>}
@@ -101,7 +101,11 @@ export default function home() {
             </div>
             <div className="bg-primary-600 w-full flex justify-center pt-8 pb-3">
                 <div className='w-full max-w-md'>
-                    <input type="text" className='main-input text-2xl' placeholder='ค้นหาต้นแบบคุณธรรม' />
+                    <input type="text" className='main-input text-2xl' onKeyPress={(e) => {
+                        if (e.key === 'Enter') {
+                            router.push(`/search?input=${e.target.value}&mode=search`)
+                        }
+                    }} placeholder='ค้นหาต้นแบบคุณธรรม' />
                 </div>
             </div>
         </IndexLayout>
@@ -126,7 +130,7 @@ export function CardShow({ bg, link, href, title, description, onClick, video, t
                 <p className=" text-white truncate w-fit lg:max-w-[180px] md:max-w-[180px] sm:max-w-[250px] max-w-[200px]">{description}</p>
             </div>
             {video && <div className="absolute w-full h-full flex items-center justify-center"><i className="fas fa-play text-xl text-white bg-secondary-500 w-16 shadow-lg h-16 flex items-center justify-center rounded-full"></i></div>}
-            {tagName && <span className={`absolute top-2 left-2 rounded-full px-3 text-white ${tagColor || 'bg-emerald-400'}`} style={{backgroundColor: tagColor}}>{tagName}</span>}
+            {tagName && <span className={`absolute top-2 left-2 rounded-full px-3 text-white ${tagColor || 'bg-emerald-400'}`} style={{ backgroundColor: tagColor }}>{tagName}</span>}
         </div>
     </div>
 }
@@ -141,10 +145,10 @@ export function CardShowV2({ bg, link, href, title, description, onClick, video,
 
     }
     return <div className="card shadow-xl hover:scale-95 transition-all cursor-pointer bg-primary-600" onClick={checkLink}>
-        <div style={{ backgroundImage: `url('${bg}')` }} className="bg-cover bg-no-repeat h-[190px] rounded-b-3xl block">
+        <div style={{ backgroundImage: `url('${bg}')` }} className="bg-cover bg-no-repeat h-[190px] rounded-b-3xl block relative">
             {video && <div className="absolute w-full h-full flex items-center justify-center"><i className="fas fa-play text-xl text-white bg-secondary-500 w-16 shadow-lg h-16 flex items-center justify-center rounded-full"></i></div>}
-            {tagName && <span className={`absolute top-2 left-2 rounded-full px-3 text-white ${tagColor || 'bg-emerald-400'}`} style={{backgroundColor: tagColor}}>{tagName}</span>}
-            {category && <span className={`absolute top-10 left-2 rounded-full px-3 text-black bg-white`}>{category}</span>}
+            {tagName && <span className={`absolute top-2 left-2 rounded-full px-3 text-white ${tagColor || 'bg-emerald-400'}`} style={{ backgroundColor: tagColor }}>{tagName}</span>}
+            {category && <div className='absolute bottom-2 w-full flex justify-center'><span className={` left-auto right-auto rounded-full px-3 text-black bg-white`}>{category}</span></div>}
         </div>
         <div className="card-body">
             <div className=" flex flex-col justify-end items-start">

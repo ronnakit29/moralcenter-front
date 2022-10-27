@@ -7,14 +7,17 @@ import ParseService from '../../plugins/ParseService'
 import { replaceString } from '../search'
 import ImageGallery from "react-image-gallery"
 import GalleryBox from '../../components/GalleryBox'
+import { CardShowV2 } from '../home'
 export default function slug() {
     const router = useRouter()
     const id = router.query.slug
     const [data, setData] = React.useState({})
+    const [more, setMore] = React.useState([])
     async function fetch() {
         try {
-            const response = await ParseService.Cloud.run('firstPage', { include: 'collection,category,parentPage.category', equal: `objectId:${id}` })
-            setData(response)
+            const response = await ParseService.Cloud.run('fetchFirstPageExtension', { id })
+            setData(response.main)
+            setMore(response.more)
         } catch (error) {
 
         }
@@ -61,8 +64,8 @@ export default function slug() {
                     </div>
                 </div>
                 <GalleryBox items={data.get('images')}></GalleryBox>
-                <div className='text-center rounded-3xl bg-neutral-200 p-5  mb-5'>
-                    <div className='flex flex-col md:flex-row items-center gap-4 justify-center'>
+                <div className='text-center rounded-3xl bg-neutral-100 border-primary-500 border p-5 mb-5'>
+                    <div className='flex flex-col items-center gap-4 justify-center'>
                         {data.get('pdfUrl') && <a className='bg-white flex items-center justify-center  w-full max-w-sm py-3 h-12 rounded-full' href={data.get('pdfUrl')} target={"_blank"}>
                             <i className="fas fa-file-pdf text-lg mr-2 text-red-500"></i> ดาวน์โหลดเอกสาร PDF
                         </a>}
@@ -75,8 +78,8 @@ export default function slug() {
                             <h1 className="text-2xl font-semibold">ติดต่อได้โดยตรง</h1>
                             {data.get('contacts').map((i, key) => <div key={i} className="main-button">{i}</div>)}
                         </div>}
-                        <div className='flex items-center justify-center w-full max-w-sm'>
-                            <div className="grid grid-cols-3 gap-2">
+                        <div className='flex items-center justify-center w-full'>
+                            <div className="grid grid-cols-4 gap-2">
                                 {data.get('messengerUrl') && <a target={'_blank'} href={data.get('messengerUrl')} className="w-14 h-14 bg-sky-400 rounded-full flex items-center justify-center">
                                     <i className="fab fa-facebook-messenger text-3xl text-white"></i>
                                 </a>}
@@ -102,6 +105,14 @@ export default function slug() {
                         </div>
                     </div>
                     {/* <ImageGallery items={(data.get('images') || []).map(x => ({ original: x, thumbnail: x }))}>  </ImageGallery> */}
+                </div>
+                <div className="p-5">
+                    <h1 className="text-xl font-semibold mb-3">
+                        เนื้อหาคล้ายๆกัน
+                    </h1>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                        {more.map((i, key) => <CardShowV2 key={key} category={i.get('category')?.get('title')} onClick={() => router.push(`/page/${i.id}?s=${i.get('title')}`)} bg={i.get('coverUrl')} title={i.get('title')} tagName={i.get('collection')?.get('title')} tagColor={i.get('collection')?.get('color')} description={replaceString(i, i.get("category")?.get('templateString') || '')}></CardShowV2>)}
+                    </div>
                 </div>
             </div>
         </ContentViewLayout> : null

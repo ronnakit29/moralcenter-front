@@ -1,9 +1,10 @@
 import React from 'react'
 import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/css"
-import { Pagination, Navigation } from "swiper";
+import { Pagination, Navigation, Autoplay } from "swiper";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
+import "swiper/css/autoplay";
 import ParseService from '../plugins/ParseService';
 import { useEffect } from 'react';
 export default function SliderComponent() {
@@ -20,7 +21,7 @@ export default function SliderComponent() {
         fetch()
     }, [])
     return (
-        <Swiper slidesPerView={1} modules={[Pagination,Navigation]} autoplay navigation={true}>
+        <Swiper slidesPerView={1} modules={[Pagination, Navigation, Autoplay]} autoplay={true} navigation={true}>
             {data.map((i, key) => <SwiperSlide key={key}>
                 <div className=' bg-primary-900 h-fit'>
                     <div className="container mx-auto">
