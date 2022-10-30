@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 import React from 'react'
 import { useEffect } from 'react'
@@ -47,6 +48,7 @@ export default function home() {
             <div>
                 <SliderComponent></SliderComponent>
             </div>
+        <WebTitle title={"หน้าหลัก"}></WebTitle>
             <div className="container mx-auto py-10 px-3">
                 <div className='grid grid-cols-5 gap-4'>
                     <div className="md:col-span-3 flex flex-col gap-4 col-span-5">
@@ -112,6 +114,12 @@ export default function home() {
     )
 }
 
+export function WebTitle({ title }) {
+    return <Head>
+        <title>{title} - องค์ความรู้ชุมชนท้องถิ่นคุณธรรมต้นแบบ</title>
+    </Head>
+}
+
 export function CardShow({ bg, link, href, title, description, onClick, video, tagName, tagColor }) {
     // const router = useRouter()
     const checkLink = () => {
@@ -127,7 +135,7 @@ export function CardShow({ bg, link, href, title, description, onClick, video, t
 
             <div className="absolute px-4 py-2 from-primary-600 via-transparent to-transparent top-0 left-0 bg-gradient-to-t w-full h-full flex flex-col justify-end items-start">
                 <h2 className="text-lg font-semibold text-white  line-clamp-1">{title}</h2>
-                <p className=" text-white truncate w-fit lg:max-w-[180px] md:max-w-[180px] sm:max-w-[250px] max-w-[200px]">{description}</p>
+                <div className=" text-white truncate w-full">{description}</div>
             </div>
             {video && <div className="absolute w-full h-full flex items-center justify-center"><i className="fas fa-play text-xl text-white bg-secondary-500 w-16 shadow-lg h-16 flex items-center justify-center rounded-full"></i></div>}
             {tagName && <span className={`absolute top-2 left-2 rounded-full px-3 text-white ${tagColor || 'bg-emerald-400'}`} style={{ backgroundColor: tagColor }}>{tagName}</span>}
@@ -153,7 +161,7 @@ export function CardShowV2({ bg, link, href, title, description, onClick, video,
         <div className="card-body">
             <div className=" flex flex-col justify-end items-start">
                 <h2 className="text-lg font-semibold text-white  line-clamp-1">{title}</h2>
-                <p className=" text-white truncate w-fit lg:max-w-[180px] md:max-w-[180px] sm:max-w-[250px] max-w-[200px]">{description}</p>
+                <div className=" text-white truncate w-full ">{description}</div>
             </div>
         </div>
 
