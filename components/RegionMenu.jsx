@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import ParseService from '../plugins/ParseService'
 import { getAllProvince, getDistrictByProvince } from '../plugins/thailand_query'
 
-export default function RegionMenu() {
+export default function RegionMenu() {5
     const router = useRouter()
     function regionTo(region) {
         const query = router.query
@@ -40,7 +40,6 @@ export default function RegionMenu() {
     }, [router.query.search, router.query.mode, router.query.input, router.query.region])
     return (
         <div className='flex gap-4 items-center flex-wrap'>
-
             <div className="flex gap-2 flex-wrap">
                 {regionList.map((i, key) => <button key={key} className="main-button min-w-min" onClick={() => regionTo(i.get('name'))}>{i.get('name').search('กรุงเทพ') ? 'ภาค' : ''}{i.get('name')}</button>)}
             </div>
