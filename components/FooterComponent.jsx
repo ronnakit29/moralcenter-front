@@ -1,7 +1,32 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import ParseService from '../plugins/ParseService'
 import CategoryList from './CategoryList'
 
 export default function FooterComponent({ dissub }) {
+    const [footer, setFooter] = React.useState({})
+    async function getFooter() {
+        try {
+            const response = await ParseService.Cloud.run("getSingleType", { ref: 'footer_link'})
+            setFooter({
+                facebook: response.get('rawData')?.facebook,
+                // line
+                line: response.get('rawData')?.line,
+                // instagram
+                instagram: response.get('rawData')?.instagram,
+                // twitter
+                twitter: response.get('rawData')?.twitter,
+                // youtube
+                youtube: response.get('rawData')?.youtube,
+                // tiktok
+                tiktok: response.get('rawData')?.tiktok,
+            })
+        } catch (error) {
+            
+        }
+    }
+    useEffect(()=>{
+        getFooter()
+    },[])
     return (
         <div className="bg-primary-600 text-white py-3">
             <footer className="max-w-screen-2xl px-4 md:px-8 mx-auto">
@@ -12,53 +37,53 @@ export default function FooterComponent({ dissub }) {
                     <h1 className="text-4xl font-bold mb-8">Get in Touch</h1>
 
                     <div className="flex gap-4">
-                        <a
-                            href="#"
+                        {footer.facebook && <a
+                            href={footer.facebook}
                             target="_blank"
                             className="hover: active:text-gray-600 transition duration-100"
                         >
                             <i className="fab fa-facebook text-xl"></i>
-                        </a>
+                        </a>}
 
-                        <a
-                            href="#"
+                        {footer.youtube && <a
+                            href={footer.youtube}
                             target="_blank"
                             className="hover: active:text-gray-600 transition duration-100"
                         >
                             <i className="fab fa-youtube text-xl"></i>
-                        </a>
+                        </a>}
 
-                        <a
-                            href="#"
+                        {footer.line && <a
+                            href={footer.line}
                             target="_blank"
                             className="hover: active:text-gray-600 transition duration-100"
                         >
                             <i className="fab fa-line text-xl"></i>
-                        </a>
+                        </a>}
 
-                        <a
-                            href="#"
+                        {footer.twitter && <a
+                            href={footer.twitter}
                             target="_blank"
                             className="hover: active:text-gray-600 transition duration-100"
                         >
                             <i className="fab fa-twitter text-xl"></i>
-                        </a>
+                        </a>}
 
-                        <a
-                            href="#"
+                        {footer.instagram && <a
+                            href={footer.instagram}
                             target="_blank"
                             className="hover: active:text-gray-600 transition duration-100"
                         >
                             <i className="fab fa-instagram text-xl"></i>
-                        </a>
+                        </a>}
 
-                        <a
-                            href="#"
+                        {footer.tiktok && <a
+                            href={footer.tiktok}
                             target="_blank"
                             className="hover: active:text-gray-600 transition duration-100"
                         >
                             <i className="fab fa-tiktok text-xl"></i>
-                        </a>
+                        </a>}
                     </div>
                 </div>
                 <div className="text-center pt-8">

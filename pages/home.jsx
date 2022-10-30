@@ -14,15 +14,40 @@ export default function home() {
     const [mediaData, setMediaData] = React.useState([])
     async function fetch() {
         try {
-            const responsePeople = await ParseService.Cloud.run("fetchPostByCategory", { categorySlug: "people" })
-            const responseBook = await ParseService.Cloud.run("fetchPostByCategory", { categorySlug: "doc-book" })
-            const responseTutorial = await ParseService.Cloud.run("fetchPostByCategory", { categorySlug: "tutorial" })
-            const responseMedia = await ParseService.Cloud.run("fetchPostByCategory", { categorySlug: "media" })
-
-            setPeopleData(responsePeople.filter(i => i.get('category')?.get('slug') == 'people'))
-            setDocBookData(responseBook.filter(i => i.get('category')?.get('slug') == 'doc-book'))
-            setTutorialData(responseTutorial.filter(i => i.get('category')?.get('slug') == 'tutorial'))
-            setMediaData(responseMedia.filter(i => i.get('category')?.get('slug') == 'media'))
+            const responsePeople = await ParseService.Cloud.run("getSingleType", { ref: "index_people" })
+            const responseBook = await ParseService.Cloud.run("getSingleType", { ref: "index_doc_book" })
+            const responseTutorial = await ParseService.Cloud.run("getSingleType", { ref: "index_tutorial" })
+            const responseMedia = await ParseService.Cloud.run("getSingleType", { ref: "index_media" })
+            const peopleData = [
+                responsePeople.get('blog1'),
+                responsePeople.get('blog2'),
+                responsePeople.get('blog3'),
+                responsePeople.get('blog4'),
+                responsePeople.get('blog5'),
+                responsePeople.get('blog6'),
+            ]
+            const docBookData = [
+                responseBook.get('blog1'),
+                responseBook.get('blog2'),
+                responseBook.get('blog3'),
+                responseBook.get('blog4'),
+            ]
+            const tutorialData = [
+                responseTutorial.get('blog1'),
+                responseTutorial.get('blog2'),
+                responseTutorial.get('blog3'),
+                responseTutorial.get('blog4'),
+                responseTutorial.get('blog5'),
+                responseTutorial.get('blog6'),
+            ]
+            const mediaData = [
+                responseMedia.get('blog1'),
+                responseMedia.get('blog2'),
+            ]
+            setPeopleData(peopleData.filter(i => i))
+            setDocBookData(docBookData.filter(i => i))
+            setTutorialData(tutorialData.filter(i => i))
+            setMediaData(mediaData.filter(i => i))
         } catch (error) {
 
         }
