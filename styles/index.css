@@ -5,6 +5,9 @@
 .main-button {
   @apply px-3 py-2 text-white rounded-2xl text-base md:text-lg hover:bg-primary-700 focus:ring-2 ring-primary-700 bg-primary-600 transition-all;
 }
+.pink-button {
+  @apply px-3 py-2 text-white rounded-2xl text-base md:text-lg hover:bg-purple-700 focus:ring-2 ring-purple-700 bg-purple-600 transition-all;
+}
 .main-input {
   @apply rounded-2xl w-full flex items-center px-3 h-[40px] border-primary-600 border outline-none text-lg text-center focus:ring-1 ring-primary-600;
 }

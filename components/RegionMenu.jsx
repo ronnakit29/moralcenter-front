@@ -34,6 +34,11 @@ export default function RegionMenu() {5
         query.district = district
         router.push({ pathname: router.pathname, query: query })
     }
+    function allCollection(){
+        const query = router.query
+        delete query.collection,
+        router.push({ pathname: router.pathname, query: query })
+    }
     useEffect(() => {
         router.query.province = ""
         regionListFetch()
@@ -41,7 +46,7 @@ export default function RegionMenu() {5
     return (
         <div className='flex gap-4 items-center flex-wrap'>
             <div className="flex gap-2 flex-wrap">
-                {regionList.map((i, key) => <button key={key} className="main-button min-w-min" onClick={() => regionTo(i.get('name'))}>{i.get('name').search('กรุงเทพ') ? 'ภาค' : ''}{i.get('name')}</button>)}
+            <button className="pink-button min-w-min" onClick={() => allCollection()}>ทุกประเภท</button>{regionList.map((i, key) => <button key={key} className="main-button min-w-min" onClick={() => regionTo(i.get('name'))}>{i.get('name').search('กรุงเทพ') ? 'ภาค' : ''}{i.get('name')}</button>)}
             </div>
             <div className='flex gap-4 w-full lg:w-[300px]'>
                 <select className='main-input' onChange={(e) => linkProvince(e.target.value)}
