@@ -37,6 +37,9 @@ export default function RegionMenu() {5
     function allCollection(){
         const query = router.query
         delete query.collection,
+        delete query.district,
+        delete query.province,
+        delete query.region,
         router.push({ pathname: router.pathname, query: query })
     }
     useEffect(() => {
