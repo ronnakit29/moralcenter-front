@@ -22,6 +22,9 @@ export default function slug() {
 
         }
     }
+    function numberFormat(num) {
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+    }
     useEffect(() => {
         if (router.isReady)
             fetch()
@@ -112,6 +115,14 @@ export default function slug() {
                     </h1>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                         {more.map((i, key) => <CardShowV2 key={key} category={i.get('category')?.get('title')} onClick={() => router.push(`/page/${i.id}?s=${i.get('title')}`)} bg={i.get('coverUrl')} title={i.get('title')} tagName={i.get('collection')?.get('title')} tagColor={i.get('collection')?.get('color')} description={replaceString(i, i.get("category")?.get('templateString') || '')}></CardShowV2>)}
+                    </div>
+                </div>
+                <div className="flex justify-center mb-3">
+                    <div className="text-center py-3 px-3 rounded border border-primary-blue-500">
+                        <div>
+                            {numberFormat(data.get('views') || 0)}
+                        </div>
+                        <div className="text-xs">คนเข้าชม</div>
                     </div>
                 </div>
             </div>
