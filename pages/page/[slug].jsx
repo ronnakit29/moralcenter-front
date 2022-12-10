@@ -37,8 +37,7 @@ export default function slug() {
             <div className='max-w-6xl mx-auto px-3'>
                 <div className='mb-5'>
                     <h1 className="text-lg md:text-xl lg:text-4xl font-semibold text-primary-600 line-clamp-2 lg:line-clamp-1 pt-2 pb-2">{data.get('title')}</h1>
-                    <p className=' text-primary-600 text-lg'>{replaceString(data, data.get("category")?.get('templateString') || '')}</p>
-
+                    <p className=' text-primary-600 text-lg'>{replaceString(data, data.get("category")?.get('templateString') || '')}, <i className="fas fa-eye"></i> ดู {numberFormat(data.get('views') || 0)} ครั้ง</p>
                 </div>
                 <div className='grid grid-cols-4 gap-4 mb-5'>
                     <div className={` flex justify-center ${!data.get('parentPage')?.id ? 'col-span-4 ' : 'col-span-4 lg:col-span-3'}`}>
@@ -118,14 +117,6 @@ export default function slug() {
                     </h1>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                         {more.map((i, key) => <CardShowV2 key={key} category={i.get('category')?.get('title')} onClick={() => router.push(`/page/${i.id}?s=${i.get('title')}`)} bg={i.get('coverUrl')} title={i.get('title')} tagName={i.get('collection')?.get('title')} tagColor={i.get('collection')?.get('color')} description={replaceString(i, i.get("category")?.get('templateString') || '')}></CardShowV2>)}
-                    </div>
-                </div>
-                <div className="flex justify-center mb-3">
-                    <div className="text-center py-3 px-3 rounded border border-primary-blue-500">
-                        <div>
-                            {numberFormat(data.get('views') || 0)}
-                        </div>
-                        <div className="text-xs">คนเข้าชม</div>
                     </div>
                 </div>
             </div>
