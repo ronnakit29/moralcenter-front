@@ -29,6 +29,9 @@ export default function slug() {
         if (router.isReady)
             fetch()
     }, [router.isReady, router.query])
+    function setHtmlIframMaxWidth(html){
+        return html.replace(/<iframe/gi, '<iframe style="max-width:100%"')
+    }
     return (data?.id ?
         <ContentViewLayout pages={[data.get("collection")?.get('title'), data.get('title')]} hideRegion={true}>
             <div className='max-w-6xl mx-auto px-3'>
@@ -61,7 +64,7 @@ export default function slug() {
                         </div>
                     </div>}
                     <div className="col-span-4 text-lg mb-5">
-                        <div dangerouslySetInnerHTML={{ __html: data.get('description') }}>
+                        <div dangerouslySetInnerHTML={{ __html: setHtmlIframMaxWidth(data.get('description')) }}>
 
                         </div>
                     </div>
