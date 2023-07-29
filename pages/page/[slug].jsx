@@ -8,6 +8,7 @@ import { replaceString } from '../search'
 import ImageGallery from "react-image-gallery"
 import GalleryBox from '../../components/GalleryBox'
 import { CardShowV2 } from '../home'
+import BeatLoader from "react-spinners/BeatLoader";
 export default function slug() {
     const router = useRouter()
     const id = router.query.slug
@@ -29,7 +30,7 @@ export default function slug() {
         if (router.isReady)
             fetch()
     }, [router.isReady, router.query])
-    function setHtmlIframMaxWidth(html){
+    function setHtmlIframMaxWidth(html) {
         return html.replace(/<iframe/gi, '<iframe style="max-width:100%"')
     }
     return (data?.id ?
@@ -120,6 +121,8 @@ export default function slug() {
                     </div>
                 </div>
             </div>
-        </ContentViewLayout> : null
+        </ContentViewLayout> : <div className='w-screen h-screen flex items-center justify-center'>
+            <BeatLoader color="#0774c2" />
+        </div>
     )
 }
