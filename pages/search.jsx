@@ -29,7 +29,7 @@ export default function search() {
                 const response = await ParseService.Cloud.run('searchPage', { search: router.query.input, equal: joinAll })
                 setData(response)
             } else {
-                const response = await ParseService.Cloud.run('allPage', { include: 'collection,category', equal: `${joinAll}`, select: ["coverUrl", "title", "collection"] })
+                const response = await ParseService.Cloud.run('allPage', { include: 'collection,category', equal: `${joinAll}`})
                 setData(response)
             }
             setLoading(false)
