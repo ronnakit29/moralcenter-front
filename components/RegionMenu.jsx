@@ -11,6 +11,7 @@ export default function RegionMenu() {5
         query.region = region
         query.input = ""
         query.mode = ""
+        delete query.pv
         router.push({ pathname: router.pathname, query: query })
     }
     const [regionList, setRegionList] = React.useState([])
@@ -23,7 +24,7 @@ export default function RegionMenu() {5
         }
     }
     const allProvince = getAllProvince()
-    const districtList = getDistrictByProvince(router.query.province)
+    const districtList = getDistrictByProvince(router.query.pv)
     function linkProvince(province) {
         router.push({ pathname: router.pathname, query: {
             collection: router.query.collection,
