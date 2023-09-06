@@ -69,7 +69,7 @@ export default function slug() {
                         </div>
                     </div>
                 </div>
-                <GalleryBox items={data.get('images')}></GalleryBox>
+                <GalleryBox items={(data?.get('images') || []).filter(x=> x !== data.get("coverUrl"))}></GalleryBox>
                 <div className='text-center rounded-3xl bg-neutral-100 border-primary-500 border p-5 mb-5'>
                     <div className='flex flex-col items-center gap-4 justify-center'>
                         {data.get('pdfUrl') && <a className='bg-white flex items-center justify-center  w-full max-w-sm py-3 h-12 rounded-full' href={data.get('pdfUrl')} target={"_blank"}>
