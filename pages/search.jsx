@@ -12,7 +12,7 @@ export default function search() {
     const [data, setData] = React.useState([])
     const slug = router.query.slug
     const [loading, setLoading] = useState(true)
-    const province = router.query.province
+    const province = router.query.pv
     const district = router.query.district
     const input = router.query.mode == 'search' ? router.query.input : ''
     async function fetch() {
@@ -29,7 +29,7 @@ export default function search() {
                 const response = await ParseService.Cloud.run('searchPage', { search: router.query.input, equal: joinAll })
                 setData(response)
             } else {
-                const response = await ParseService.Cloud.run('allPage', { include: 'collection,category', equal: `${joinAll}`})
+                const response = await ParseService.Cloud.run('allPage', { include: 'collection,category', equal: `${joinAll}` })
                 setData(response)
             }
             setLoading(false)

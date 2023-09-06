@@ -3,7 +3,7 @@ import Breadcrumb from './Breadcrumb'
 import IndexLayout from './IndexLayout'
 import RegionMenu from './RegionMenu'
 
-export default function ContentViewLayout({ children,pages, hideRegion }) {
+export default function ContentViewLayout({ children, pages, hideRegion }) {
     return (
         <IndexLayout>
             {!hideRegion && <div className='py-5 container mx-auto flex justify-center px-3'>

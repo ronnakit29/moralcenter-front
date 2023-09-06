@@ -25,13 +25,16 @@ export default function RegionMenu() {5
     const allProvince = getAllProvince()
     const districtList = getDistrictByProvince(router.query.province)
     function linkProvince(province) {
-        const query = router.query
-        query.province = province
-        router.push({ pathname: router.pathname, query: query })
+        router.push({ pathname: router.pathname, query: {
+            collection: router.query.collection,
+            pv: province,
+            slug: router.query.slug,
+        } })
     }
     function linkDistrict(district) {
         const query = router.query
         query.district = district
+        delete query.region
         router.push({ pathname: router.pathname, query: query })
     }
     function allCollection(){
@@ -45,15 +48,14 @@ export default function RegionMenu() {5
     useEffect(() => {
         router.query.province = ""
         regionListFetch()
-    }, [router.query.search, router.query.mode, router.query.input, router.query.region])
+    }, [router.query.search, router.query.mode, router.query.input, router.query.region, router.query.province])
     return (
         <div className='flex gap-4 items-center flex-wrap'>
             <div className="flex gap-2 flex-wrap">
             <button className="pink-button min-w-min" onClick={() => allCollection()}>ทุกประเภท</button>{regionList.map((i, key) => <button key={key} className="main-button min-w-min" onClick={() => regionTo(i.get('name'))}>{i.get('name').search('กรุงเทพ') ? 'ภาค' : ''}{i.get('name')}</button>)}
             </div>
             <div className='flex gap-4 w-full lg:w-[300px]'>
-                <select className='main-input' onChange={(e) => linkProvince(e.target.value)}
-                    value={router.query.province || ""}>
+                <select className='main-input' onChange={(e) => linkProvince(e.target.value)}>
                     <option value="">จังหวัด</option>
                     {allProvince.map((i, key) => <option key={key} value={i.name_th}>{i.name_th}</option>)}
                 </select>
