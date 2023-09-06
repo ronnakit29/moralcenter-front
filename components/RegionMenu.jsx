@@ -66,7 +66,7 @@ export default function RegionMenu() {5
                 </select>
                 <select className='main-input'
                     onChange={(e) => linkDistrict(e.target.value)}
-                    value={router.query.district}
+                    value={router.query.district || ""}
                 >
                     <option value="">อำเภอ</option>
                     {districtList.map((i, key) => <option key={key} value={i.name_th}>{i.name_th}</option>)}
