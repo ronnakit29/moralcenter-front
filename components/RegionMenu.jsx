@@ -40,7 +40,7 @@ export default function RegionMenu() {5
         delete query.district,
         delete query.province,
         delete query.region,
-        router.push({ pathname: router.pathname, query: query })
+        router.push({ pathname: router.pathname })
     }
     useEffect(() => {
         router.query.province = ""
