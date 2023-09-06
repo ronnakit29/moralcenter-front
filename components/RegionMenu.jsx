@@ -12,6 +12,8 @@ export default function RegionMenu() {5
         query.input = ""
         query.mode = ""
         delete query.pv
+        delete query.district
+        delete query.province
         router.push({ pathname: router.pathname, query: query })
     }
     const [regionList, setRegionList] = React.useState([])
@@ -56,7 +58,9 @@ export default function RegionMenu() {5
             <button className="pink-button min-w-min" onClick={() => allCollection()}>ทุกประเภท</button>{regionList.map((i, key) => <button key={key} className="main-button min-w-min" onClick={() => regionTo(i.get('name'))}>{i.get('name').search('กรุงเทพ') ? 'ภาค' : ''}{i.get('name')}</button>)}
             </div>
             <div className='flex gap-4 w-full lg:w-[300px]'>
-                <select className='main-input' onChange={(e) => linkProvince(e.target.value)}>
+                <select className='main-input' onChange={(e) => linkProvince(e.target.value)}
+                    value={router.query.pv || ""}
+                >
                     <option value="">จังหวัด</option>
                     {allProvince.map((i, key) => <option key={key} value={i.name_th}>{i.name_th}</option>)}
                 </select>
